@@ -52,6 +52,7 @@ public class Contratado extends Usuario {
 		Double media = 0.0;
 		Double i = 0.0;
 		for(PesquisaSatisfacao x : pesquisas) {
+			i++;
 			media += x.getNota();
 		}
 		return media/i;
