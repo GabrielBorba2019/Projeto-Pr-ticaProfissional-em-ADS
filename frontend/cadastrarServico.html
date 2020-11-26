@@ -10,12 +10,12 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
             <link rel="stylesheet" href="cadastro.css"> 
             <link rel="shortcut icon" href="img/img4.png" type="image/x-icon" />
+               
             <script>
-                function retornoCadastro(){
-                    window.location.href = "cadastro.html"
+                function retorno(){
+                    window.location.href ="servicoContratado.html"
                 }
             </script>
-            
             
     </head>
     <body>
@@ -38,43 +38,47 @@
     </nav>
         
         <div class="row ml-4 mt-2">
-            <p class=titulo>Cadastro Administrador</p>
-        </div>
-        
-        <div class="row linha1">
-            <div class="col-8">
-                <h3>Dados Pessoais</h3>
-                <label for="validationDefault01">Nome Completo:</label>
-                <input type="text" class="form-control" id="contratada01" placeholder="João da Silva" value="João da Silva" required>
-                <label for="validationDefault01">E-mail:</label>
-                <input type="email" class="form-control" id="contratada02" placeholder="joaosilva@gmail.com" value="joaosilva@gmail.com" required>
-                <label for="validationDefault01">Senha:</label>
-                <input type="password" class="form-control" id="contratada03" placeholder="senha" value="senha" required>
-                <label for="validationDefault01">CPF ou CNPJ:</label>
-                <input type="text" class="form-control" id="contratada04" placeholder="CPF ou CNPJ" value="CPF CNPJ" required>
-                <label for="validationDefault01">Data de Nascimento:</label>
-                <input type="text" class="form-control" id="contratada05" placeholder="01/02/1980" value="01/02/1980" required>
-                <label for="validationDefault01">Tipo Pessoa:</label>
-                <input type="text" class="form-control" id="contratada06" placeholder="P ou F" value="P ou F" required>
-                <label for="validationDefault01">Endereço:</label>
-                <input type="text" class="form-control" id="contratada07" placeholder="Rua 01" value="Rua 01" required>
-                <label for="validationDefault01">Número:</label>
-                <input type="text" class="form-control" id="contratada08" placeholder="1" value="1" required>
-                <label for="validationDefault01">Telefone:</label>
-                <input type="text" class="form-control" id="contratada09" placeholder="000000" value="0000-0000" required>
-                <div class="form-check form-check-inline"></div> 
-                
-                <br>
-                <button class="btn btn-primary bg-dark" onclick="retornoCadastro()">
+        <p class=titulo>Cadastro Contratada</p>
+    </div>
+
+    <div class="row linha1">
+        <div class="col-8">
+            <h3>Dados Pessoais</h3>
+
+            <div class="form-check form-check-inline"></div>
+            <h3>Serviços Prestados</h3>
+            <div class="row">
+            <div class="col-8" >
+            <div class="checkbox">
+            <label><input type="checkbox" value="hidraulica"> Hidráulica</label>
+            </div>
+            <div class="checkbox">
+            <label><input type="checkbox" value="eletrica"> Elétrica</label>
+            </div>
+            <div class="checkbox">
+            <label><input type="checkbox" value="alvenaria"> Alvenaria</label>
+            </div>
+            <div class="checkbox">
+            <label><input type="checkbox" value="outros"> Outros</label>
+            </div>
+                </div>
+            </div>
+            <br>
+                    <button class="btn btn-primary bg-dark" onclick="retorno()">
                         Cancelar
                     </button>
-                <button class="btn btn-primary bg-dark" type="submit">Cadastrar</button>
-            </div>
+                    <button class="btn btn-primary bg-dark" type="submit">
+                        Cadastrar
+                    </button>
+               
+            
+            
             <div class="col-4 c1">
-                <img src="img/img6.png">
+                <img src="img/produtos-servi%C3%A7os.png">
             </div>
         </div>
         <div class="separador"></div>
+        </div>
     </body>
     
     <footer class="page-footer font-small bg-dark">
@@ -95,4 +99,54 @@
     </footer>                                    
                                                    
 </html>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
