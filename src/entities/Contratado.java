@@ -13,14 +13,16 @@ public class Contratado extends Usuario {
 	private ContaBancaria contaBancaria;
 	private List<Servico> servicos = new ArrayList();
 	private List<PesquisaSatisfacao> pesquisas = new ArrayList();
+    private final Long id;
 	
 	
 
-	public Contratado(String nome, String cpf, String tipoPessoa, String endereco, String telefone, String email, Date dataNascimento, String cnpj, Double notaMedia, ContaBancaria contaBancaria) {
+	public Contratado(Long id, String nome, String cpf, String tipoPessoa, String endereco, String telefone, String email, Date dataNascimento, String cnpj, Double notaMedia, ContaBancaria contaBancaria) {
 		super(nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento);
 		this.cnpj = cnpj;
 		this.notaMedia = notaMedia;
 		this.contaBancaria = contaBancaria;
+                this.id = id;
 	}
 
 	public String getCnpj() {
@@ -58,5 +60,13 @@ public class Contratado extends Usuario {
 		return media/i;
 		
 	}
+
+    public long getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getcpf() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }

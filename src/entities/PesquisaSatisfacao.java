@@ -45,6 +45,10 @@ public class PesquisaSatisfacao {
 	public void setNota(Double nota) {
 		this.nota = nota;
 	}
+
+    public long getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	
 		
