@@ -20,18 +20,22 @@ public class Contratante extends Usuario {
 	}
 
     public long getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id;
     }
 
     public String getcpf() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cpf; 
     }
     
     public Date getDataNascimento() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return dataNascimento;
     }
 
     public double getNotaMedia() {
+        return notaMedia;
+    }
+
+    public void setId(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	

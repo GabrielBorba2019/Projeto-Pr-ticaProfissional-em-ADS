@@ -5,12 +5,13 @@ import java.util.Date;
 public abstract class Usuario {
 	
 	private String nome;
-	private String cpf;
+	String cpf;
 	private String tipoPessoa;
 	private String endereco;
 	private String telefone;
 	private String email;
-	private Date dataNascimento;
+	Date dataNascimento;
+    private final Long id;
 	
 	public Usuario(String nome, String cpf, String tipoPessoa, String endereco, String telefone, String email, Date dataNascimento) {
 		this.nome = nome;
@@ -20,6 +21,7 @@ public abstract class Usuario {
 		this.telefone = telefone;
 		this.email = email;
 		this.dataNascimento = dataNascimento;
+              
 	}
 
 	public String getNome() {
@@ -77,6 +79,14 @@ public abstract class Usuario {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
+    public String getSenha() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public long getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	
 	

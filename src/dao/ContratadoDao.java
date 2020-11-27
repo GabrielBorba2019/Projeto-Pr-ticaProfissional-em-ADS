@@ -1,7 +1,8 @@
 package dao;
 
+import conexao.ConexaoException;
+import conexao.ConexaoJavaDb;
 import entities.Contratado;
-import entities.Contratante;
 import entities.pag.ContaBancaria;
 import java.sql.PreparedStatement;
 import java.sql.*;
@@ -61,6 +62,15 @@ public class ContratadoDao {
         long id = 0;
         try {
             stmC.setString(1, l.getNome());
+            stmC.setString(2, l.getcpf());
+            stmC.setString(3, l.getTipoPessoa());
+            stmC.setString(4, l.getEndereco());
+            stmC.setString(5, l.getTelefone());
+            stmC.setString(6, l.getEmail());
+            stmC.setDate(7, (Date) l.getDataNascimento());
+            stmC.setString(8, l.getCnpj());
+            stmC.setDouble(9, l.getNotaMedia());
+            stmC.setContaBancaria(10, l.getContaBancaria());
 
             int r = stmC.executeUpdate();
             ResultSet rs = stmC.getGeneratedKeys();
@@ -89,7 +99,7 @@ public class ContratadoDao {
                 Date dataNascimento = rs.getDate("dataNascimento");
                 Double cnpj = rs.getDouble("cnpj");
                 Double notaMedia = rs.getDouble("notaMedia");
-                ContaBancaria contaBancaria = conta.getConta();
+                ContaBancaria contaBancaria = rs.getClass();
                
               
               

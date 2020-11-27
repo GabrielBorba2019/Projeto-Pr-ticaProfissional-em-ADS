@@ -1,3 +1,5 @@
+package dao;
+
 public class DaoException extends Exception {
 	private String msg;
 	public DaoException(String msg) {

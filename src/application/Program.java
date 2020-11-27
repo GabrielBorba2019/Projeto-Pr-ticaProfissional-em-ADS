@@ -1,5 +1,15 @@
 package application;
 
+import rest.PesquisaSatisfacaoResource;
+import conexao.ConexaoJavaDb;
+import dao.ContratadoDao;
+import dao.ContratanteDao;
+import dao.PesquisaSatisfacaoDao;
+import javafx.application.Application;
+import javax.security.auth.login.Configuration;
+import rest.ContratadoResource;
+import rest.ContratanteResource;
+
 public class Program extends Application<Configuration> {
     public static void main(String[] args) throws Exception {
         new Program().run(new String[] { "server" });
@@ -14,32 +24,21 @@ public class Program extends Application<Configuration> {
     public void run(Configuration configuration, Environment environment) {
         try {
             ConexaoJavaDb conexao;
-            conexao = new ConexaoJavaDb("app", "app", "localhost", 1527, "Projeto");
+            conexao = new ConexaoJavaDb();
 
-
-            LojasDao lojasDao = new LojasDao(conexao);
-            environment.jersey().register(new LojaResource(lojasDao));
+            ContratadoDao lojasDao = new ContratadoDao(conexao);
+            environment.jersey().register(new ContratadoResource(lojasDao));
             environment.jersey().setUrlPattern("/api/*");
 
-            CarrosDao carroDao = new CarrosDao(conexao);
-            environment.jersey().register(new CarroResource(carroDao));
+            ContratanteDao carroDao = new ContratanteDao(conexao);
+            environment.jersey().register(new ContratanteResource(carroDao));
             environment.jersey().setUrlPattern("/api/*");
 
-            TimeDao timesDao = new TimeDao(conexao);
-            environment.jersey().register(new TimeResource(timesDao));
+            PesquisaSatisfacaoDao timesDao = new PesquisaSatisfacaoDao(conexao);
+            environment.jersey().register(new PesquisaSatisfacaoResource(timesDao));
             environment.jersey().setUrlPattern("/api/*");
 
-            CampeonatoDao campeonatosDao = new CampeonatoDao(conexao);
-            environment.jersey().register(new CampeonatoResource(campeonatosDao));
-            environment.jersey().setUrlPattern("/api/*");
-
-            OrganizacaoDao organizacaoDao = new OrganizacaoDao(conexao);
-            environment.jersey().register(new OrganizacaoResource(organizacaoDao));
-            environment.jersey().setUrlPattern("/api/*");
-
-            PaisDao paisDao = new PaisDao(conexao);
-            environment.jersey().register(new PaisResource(paisDao));
-            environment.jersey().setUrlPattern("/api/*");
+         
 
         } catch(Exception e) {
             e.printStackTrace();

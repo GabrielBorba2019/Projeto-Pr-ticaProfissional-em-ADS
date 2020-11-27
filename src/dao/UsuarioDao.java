@@ -2,37 +2,35 @@ package dao;
 
 import conexao.ConexaoException;
 import conexao.ConexaoJavaDb;
-import entities.Contratante;
+import entities.Usuario;
+import entities.pag.ContaBancaria;
 import java.sql.PreparedStatement;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContratanteDao {
+public class UsuarioDao {
 
-    private final static String sqlCreateTable = "CREATE TABLE contratantes "
+    private final static String sqlCreateTable = "CREATE TABLE usuarios "
             + "(id BIGINT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),"
             + "nome VARCHAR(100) NOT NULL,"
-            + "cpf VARCHAR(100) NOT NULL,"
-            + "tipoPessoa VARCHAR(100) NOT NULL,"
-            + "endereco VARCHAR(100) NOT NULL,"
-            + "telefone VARCHAR(100) NOT NULL,"
             + "email VARCHAR(100) NOT NULL,"
-            + "dataNascimento DATE NOT NULL,"
-            + "notaMedia FLOAT NOT NULL,"
+            + "senha VARCHAR(100) NOT NULL,"
+            + "idTipoPessoa INT NOT NULL FOREIGN KEY REFERENCES tipoPessoa"          
             + "PRIMARY KEY (id))";
-    private final String sqlC = "INSERT INTO contratantes (nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento, notaMedia) VALUES (?,?,?,?,?,?,?,?)";
-    private final String sqlR = "SELECT * FROM contratantes";
-    private final String sqlU = "UPDATE contratantes SET nome=?, cpf=?, tipoPessoa=?, endereco=?, telefone=?, email=?, dataNascimento=?, notaMedia=? WHERE id=?";
-    private final String sqlD = "DELETE FROM contratantes WHERE id=?";
-    private final String sqlRById = "SELECT * FROM contratantes WHERE id=?";
+    private final String sqlC = "INSERT INTO usuarios (nome,email, senha,idTipoPessoa ) VALUES (?,?,?,?)";
+    private final String sqlR = "SELECT * FROM usuarios";
+    private final String sqlU = "UPDATE usuarios SET nome=?, email=?, senha=?, idTipoPessoa=? WHERE id=?";
+    private final String sqlD = "DELETE FROM usuarios WHERE id=?";
+    private final String sqlRById = "SELECT * FROM usuarios WHERE id=?";
     private PreparedStatement stmC;
     private PreparedStatement stmR;
     private PreparedStatement stmU;
     private PreparedStatement stmD;
     private PreparedStatement stmRById;
+    private ContaBancaria conta = new ContaBancaria(); 
 
-    public ContratanteDao(ConexaoJavaDb conexao) throws DaoException, ConexaoException {
+    public UsuarioDao(ConexaoJavaDb conexao) throws DaoException, ConexaoException {
         try {
             Connection con = conexao.getConnection();
             try {
@@ -53,17 +51,10 @@ public class ContratanteDao {
         }
     }
 
-    public long create(Contratante l) throws DaoException {
+    public long create(Usuario l) throws DaoException {
         long id = 0;
         try {
             stmC.setString(1, l.getNome());
-            stmC.setString(2, l.getcpf());
-            stmC.setString(3, l.getTipoPessoa());
-            stmC.setString(4, l.getEndereco());
-            stmC.setString(5, l.getTelefone());
-            stmC.setString(6, l.getEmail());
-            stmC.setDate(7, (Date) l.getDataNascimento());
-            stmC.setDouble(8, l.getNotaMedia());
 
             int r = stmC.executeUpdate();
             ResultSet rs = stmC.getGeneratedKeys();
@@ -77,44 +68,37 @@ public class ContratanteDao {
         return id;
     }
 
-    public List<Contratante> read() throws DaoException {
-        List<Contratante> contratantes = new ArrayList<>();
+    public List<Usuario> read() throws DaoException {
+        List<Usuario> usuarios = new ArrayList<>();
         try {
             ResultSet rs = stmR.executeQuery();
             while (rs.next()) {
                 long id = rs.getLong("id");
                 String nome = rs.getString("nome");
-                String cpf = rs.getString("cpf");
-                String tipoPessoa = rs.getString("tipoPessoa");
-                String endereco = rs.getString("endereco");
-                String telefone = rs.getString("telefone");
                 String email = rs.getString("email");
-                Date dataNascimento = rs.getDate("dataNascimento");
-                Double notaMedia = rs.getDouble("notaMedia");
-
-                Contratante l = new Contratante(id, nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento, notaMedia);
-                contratantes.add(l);
+                String senha = rs.getString("senha");
+                String idTipoPessoa = rs.getString("idTipoPessoa");
+     
+              
+                Usuario l = new Usuario(id, nome,email, senha,idTipoPessoa);
+                usuarios.add(l);
             }
             rs.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new DaoException("Falha ao ler registros: " + ex.getMessage());
         }
-        return contratantes;
+        return usuarios;
     }
 
-    public void update(Contratante l) throws DaoException {
+    public void update(Usuario l) throws DaoException {
         try {
             stmU.setString(1, l.getNome());
-            stmU.setString(2, l.getcpf());
-            stmU.setString(3, l.getTipoPessoa());
-            stmU.setString(4, l.getEndereco());
-            stmU.setString(5, l.getTelefone());
-            stmU.setString(6, l.getEmail());
-            stmU.setDate(7, (Date) l.getDataNascimento());
-            stmU.setDouble(8, l.getNotaMedia());
-
-            stmU.setLong(9, l.getId());
+            stmU.setString(2, l.getEmail());
+            stmU.setString(3, l.getSenha());
+            stmU.setString(4, l.getTipoPessoa());
+            
+            stmU.setLong(5, l.getId());
             int r = stmU.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -143,23 +127,20 @@ public class ContratanteDao {
         }
     }
 
-    public Contratante readById(long id) throws DaoException {
-        Contratante l = null;
+    public Usuario readById(long id) throws DaoException {
+        Usuario l = null;
 
         try {
             stmRById.setLong(1, id);
             ResultSet rs = stmRById.executeQuery();
             if (rs.next()) {
-                String nome = rs.getString("nome");
-                String cpf = rs.getString("cpf");
-                String tipoPessoa = rs.getString("tipoPessoa");
-                String endereco = rs.getString("endereco");
-                String telefone = rs.getString("telefone");
-                String email = rs.getString("email");
-                Date dataNascimento = rs.getDate("dataNascimento");
-                Double notaMedia = rs.getDouble("notaMedia");
 
-                l = new Contratante(id, nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento, notaMedia);
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                String senha = rs.getString("senha");
+                String idTipoPessoa = rs.getString("idTipoPessoa");
+                
+                l = new Usuario(id, nome,email, senha,idTipoPessoa);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -169,5 +150,3 @@ public class ContratanteDao {
     }
 
 }
-
-
