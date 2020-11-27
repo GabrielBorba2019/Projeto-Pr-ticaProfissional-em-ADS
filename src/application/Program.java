@@ -1,14 +1,17 @@
 package application;
 
-import rest.PesquisaSatisfacaoResource;
 import conexao.ConexaoJavaDb;
 import dao.ContratadoDao;
 import dao.ContratanteDao;
-import dao.PesquisaSatisfacaoDao;
-import javafx.application.Application;
-import javax.security.auth.login.Configuration;
+import io.dropwizard.Application;
+import io.dropwizard.Configuration;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import io.dropwizard.assets.AssetsBundle;
 import rest.ContratadoResource;
 import rest.ContratanteResource;
+
+
 
 public class Program extends Application<Configuration> {
     public static void main(String[] args) throws Exception {
@@ -17,7 +20,7 @@ public class Program extends Application<Configuration> {
     //#f9f9f9
     @Override
     public void initialize(final Bootstrap<Configuration> bootstrap) {
-        bootstrap.addBundle(new AssetsBundle("/resources/html", "/site", "index.html"));
+        bootstrap.addBundle(new AssetsBundle("/resources/html", "/home", "home.html"));
     }
 
     @Override
@@ -34,9 +37,7 @@ public class Program extends Application<Configuration> {
             environment.jersey().register(new ContratanteResource(carroDao));
             environment.jersey().setUrlPattern("/api/*");
 
-            PesquisaSatisfacaoDao timesDao = new PesquisaSatisfacaoDao(conexao);
-            environment.jersey().register(new PesquisaSatisfacaoResource(timesDao));
-            environment.jersey().setUrlPattern("/api/*");
+           
 
          
 

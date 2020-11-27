@@ -80,8 +80,8 @@ public class UsuarioDao {
                 String idTipoPessoa = rs.getString("idTipoPessoa");
      
               
-                Usuario l = new Usuario(id, nome,email, senha,idTipoPessoa);
-                usuarios.add(l);
+//                Usuario l = new Usuario(id, nome,email, senha,idTipoPessoa);
+//                usuarios.add(l);
             }
             rs.close();
         } catch (SQLException ex) {
@@ -140,7 +140,7 @@ public class UsuarioDao {
                 String senha = rs.getString("senha");
                 String idTipoPessoa = rs.getString("idTipoPessoa");
                 
-                l = new Usuario(id, nome,email, senha,idTipoPessoa);
+//                l = new Usuario(id, nome,email, senha,idTipoPessoa);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -11,7 +11,6 @@ public abstract class Usuario {
 	private String telefone;
 	private String email;
 	Date dataNascimento;
-    private final Long id;
 	
 	public Usuario(String nome, String cpf, String tipoPessoa, String endereco, String telefone, String email, Date dataNascimento) {
 		this.nome = nome;
@@ -21,7 +20,6 @@ public abstract class Usuario {
 		this.telefone = telefone;
 		this.email = email;
 		this.dataNascimento = dataNascimento;
-              
 	}
 
 	public String getNome() {

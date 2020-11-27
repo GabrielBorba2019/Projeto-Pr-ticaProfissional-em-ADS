@@ -70,7 +70,7 @@ public class ContratadoDao {
             stmC.setDate(7, (Date) l.getDataNascimento());
             stmC.setString(8, l.getCnpj());
             stmC.setDouble(9, l.getNotaMedia());
-            stmC.setContaBancaria(10, l.getContaBancaria());
+//            stmC.setContaBancaria(10, l.getContaBancaria());
 
             int r = stmC.executeUpdate();
             ResultSet rs = stmC.getGeneratedKeys();
@@ -99,12 +99,12 @@ public class ContratadoDao {
                 Date dataNascimento = rs.getDate("dataNascimento");
                 Double cnpj = rs.getDouble("cnpj");
                 Double notaMedia = rs.getDouble("notaMedia");
-                ContaBancaria contaBancaria = rs.getClass();
+//                ContaBancaria contaBancaria = rs.getClass();
                
               
               
-                Contratado l = new Contratado(id, nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento, cnpj, notaMedia, contaBancaria);
-                contratados.add(l);
+//                Contratado l = new Contratado(id, nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento, cnpj, notaMedia, contaBancaria);
+//                contratados.add(l);
             }
             rs.close();
         } catch (SQLException ex) {
@@ -125,7 +125,7 @@ public class ContratadoDao {
             stmU.setDate(7, (Date) l.getDataNascimento());
             stmU.setString(8, l.getCnpj());
             stmU.setDouble(9, l.getNotaMedia());
-            stmU.setContaBancaria(10, l.getContaBancaria());
+//            stmU.setContaBancaria(10, l.getContaBancaria());
             
 
             stmU.setLong(11, l.getId());
@@ -174,8 +174,8 @@ public class ContratadoDao {
                 Date dataNascimento = rs.getDate("dataNascimento");
                 Double cnpj = rs.getDouble("cnpj");
                 Double notaMedia = rs.getDouble("notaMedia");
-                ContaBancaria contaBancaria = conta.getConta();
-                l = new Contratado(id, nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento, cnpj, notaMedia, contaBancaria);
+//                ContaBancaria contaBancaria = conta.getConta();
+//                l = new Contratado(id, nome, cpf, tipoPessoa, endereco, telefone, email, dataNascimento, cnpj, notaMedia, contaBancaria);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
