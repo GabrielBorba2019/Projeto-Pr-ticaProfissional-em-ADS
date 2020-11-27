@@ -61,7 +61,7 @@ footer{
 }
 
 .imagem1{
-    margin-top: 20px;
+    margin-top: 40px;
     
 }
 
@@ -80,3 +80,55 @@ footer{
     width: 50%;
     
 }
+
+.botao{
+    display: inline-block;
+    margin: 0.7em;
+    padding: 0.5em 2em;
+    text-decoration: none;
+    color: #FFF;
+    background: #5c68b0;
+    border-radius: 1em;
+    transition: box-shadow 0.3.s ease, transform 0.3 ease;    
+}
+
+.botao: active {
+    box-shadow: 0 0 0 0,
+                inset 4px 4px 4px;
+    transform: translate(6px, 6px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

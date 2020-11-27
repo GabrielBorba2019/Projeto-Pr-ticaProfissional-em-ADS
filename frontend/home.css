@@ -8,6 +8,11 @@
     margin-left: 40px;
 }
 
+.navbar-register{
+    margin-left: 100px;
+    font-weight: bold;
+}
+
 .btn-home{
     font-weight: bold;
 }
@@ -47,6 +52,4 @@ footer{
     width: 100%;
     
 }
-
-
 
